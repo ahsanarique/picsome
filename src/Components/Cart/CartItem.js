@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { Context } from "../../Context/Context";
+import React from "react";
 import useHover from "../../Hooks/useHover";
 
-function CartItem({ item }) {
+function CartItem({ item, removeFromCart }) {
   const [hovered, ref] = useHover();
-  const { removeFromCart } = useContext(Context);
 
   const iconClassName = hovered ? "ri-delete-bin-fill" : "ri-delete-bin-line";
 

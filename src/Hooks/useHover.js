@@ -13,12 +13,13 @@ function useHover() {
   }
 
   useEffect(() => {
-    ref.current.addEventListener("mouseenter", handleMouseEnter);
-    ref.current.addEventListener("mouseleave", handleMouseLeave);
+    const current = ref.current;
+    current.addEventListener("mouseenter", handleMouseEnter);
+    current.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      ref.current.removeEventListener("mouseenter", handleMouseEnter);
-      ref.current.removeEventListener("mouseleave", handleMouseLeave);
+      current.removeEventListener("mouseenter", handleMouseEnter);
+      current.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 

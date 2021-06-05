@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import Image from "./Image";
-import { Context } from "../../Context/Context";
 
-function Photos() {
-  const { allPhotos } = useContext(Context);
-
+function Photos({
+  allPhotos,
+  cartItems,
+  toggleFavorite,
+  addToCart,
+  removeFromCart,
+}) {
   function getClass(i) {
     if (i % 5 === 0) {
       return "big";
@@ -14,7 +17,15 @@ function Photos() {
   }
 
   const imageElements = allPhotos.map((img, i) => (
-    <Image key={img.id} img={img} className={getClass(i)} />
+    <Image
+      key={img.id}
+      img={img}
+      toggleFavorite={toggleFavorite}
+      cartItems={cartItems}
+      addToCart={addToCart}
+      removeFromCart={removeFromCart}
+      className={getClass(i)}
+    />
   ));
 
   return <main className="photos">{imageElements}</main>;

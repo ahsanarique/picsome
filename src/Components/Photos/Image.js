@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import useHover from "../../Hooks/useHover";
-import { Context } from "../../Context/Context";
 
-function Image({ className, img }) {
+function Image({
+  className,
+  img,
+  toggleFavorite,
+  cartItems,
+  addToCart,
+  removeFromCart,
+}) {
   const [hovered, ref] = useHover();
-  const { toggleFavorite, addToCart, cartItems, removeFromCart } =
-    useContext(Context);
 
   function heartIcon() {
     if (img.isFavorite) {
