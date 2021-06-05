@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import CartItem from "./CartItem";
+import { useSelector, useDispatch } from "react-redux";
+import { emptyCart } from "../../Redux/actions";
 
-function Cart({ cartItems, emptyCart, removeFromCart }) {
+function Cart() {
   const [buttonText, setButtonText] = useState("Place Order");
+
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   const totalCost = 5.99 * cartItems.length;
   const totalCostDisplay = totalCost.toLocaleString("en-US", {
@@ -11,15 +16,15 @@ function Cart({ cartItems, emptyCart, removeFromCart }) {
   });
 
   const cartItemElements = cartItems.map((item) => (
-    <CartItem key={item.id} item={item} removeFromCart={removeFromCart} />
+    <CartItem key={item.id} item={item} />
   ));
 
   function placeOrder() {
     setButtonText("Ordering...");
     setTimeout(() => {
-      console.log("Order placed!");
       setButtonText("Place Order");
-      emptyCart();
+      dispatch(emptyCart());
+      alert("Order placed!");
     }, 3000);
   }
 

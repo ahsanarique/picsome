@@ -1,8 +1,12 @@
 import React from "react";
 import useHover from "../../Hooks/useHover";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../Redux/actions";
 
-function CartItem({ item, removeFromCart }) {
+function CartItem({ item }) {
   const [hovered, ref] = useHover();
+
+  const dispatch = useDispatch();
 
   const iconClassName = hovered ? "ri-delete-bin-fill" : "ri-delete-bin-line";
 
@@ -10,7 +14,7 @@ function CartItem({ item, removeFromCart }) {
     <div className="cart-item">
       <i
         className={iconClassName}
-        onClick={() => removeFromCart(item.id)}
+        onClick={() => dispatch(removeFromCart(item.id))}
         ref={ref}
       ></i>
 

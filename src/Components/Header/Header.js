@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function Header({ cartItems }) {
+function Header() {
+  const cartItems = useSelector((state) => state.cart);
+
   const cartClassName =
     cartItems.length > 0 ? "ri-shopping-cart-fill" : "ri-shopping-cart-line";
 

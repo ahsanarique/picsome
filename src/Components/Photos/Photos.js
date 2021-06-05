@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "./Image";
+import fakeData from "../../Fakedata/fakedata";
+import { useSelector, useDispatch } from "react-redux";
+import { setAllPhotos } from "../../Redux/actions";
 
-function Photos({
-  allPhotos,
-  cartItems,
-  toggleFavorite,
-  addToCart,
-  removeFromCart,
-}) {
+function Photos() {
+  const allPhotos = useSelector((state) => state.allPhotos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setAllPhotos(fakeData));
+  }, [dispatch]);
+
   function getClass(i) {
     if (i % 5 === 0) {
       return "big";
@@ -17,15 +21,7 @@ function Photos({
   }
 
   const imageElements = allPhotos.map((img, i) => (
-    <Image
-      key={img.id}
-      img={img}
-      toggleFavorite={toggleFavorite}
-      cartItems={cartItems}
-      addToCart={addToCart}
-      removeFromCart={removeFromCart}
-      className={getClass(i)}
-    />
+    <Image key={img.id} img={img} className={getClass(i)} />
   ));
 
   return <main className="photos">{imageElements}</main>;
